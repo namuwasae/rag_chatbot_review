@@ -112,7 +112,7 @@ def get_rag_chain():
     
     llm=get_llm()
     
-    ### 이 부분이 지금 langchain 사이트에 없음. 그래서 지금 공개된 프롬프트를 바탕으로도 해봐야할 필요가 있을듯.
+    ### 이 부분이 지금 langchain 사이트에 없음. 지금 공개된 프롬프트도 확인해보고 그걸 바탕으로도 해봐도 될듯.
     example_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", "You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, say that you don't know. Use three sentences maximum and keep the answer concise."),
