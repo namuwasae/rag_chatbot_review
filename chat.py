@@ -1,6 +1,6 @@
 from llm import get_ai_response
 import streamlit as st
-from dotenv import load_dotenv
+import os
 
 
 st.set_page_config(page_title="Tax-Chatbot", page_icon="📜")
@@ -8,7 +8,11 @@ st.set_page_config(page_title="Tax-Chatbot", page_icon="📜")
 st.title("📜 소득세 챗봇")
 st.caption("소득세 관련 질문을 내용을 입력하면 자동으로 답변을 생성해줍니다.")
 
-load_dotenv()
+# 환경변수 설정 (Streamlit secrets 또는 환경변수 사용)
+if "OPENAI_API_KEY" in st.secrets:
+    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+if "PINECONE_API_KEY" in st.secrets:
+    os.environ["PINECONE_API_KEY"] = st.secrets["PINECONE_API_KEY"]
 
 if "message_list" not in st.session_state:
     st.session_state.message_list = []
