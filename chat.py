@@ -1,4 +1,4 @@
-from llm import get_ai_message
+from llm import get_ai_response
 import streamlit as st
 from dotenv import load_dotenv
 
@@ -26,10 +26,11 @@ if user_question := st.chat_input(placeholder="소득세 관련 질문을 입력
     
     
     with st.spinner("답변 생성중입니다."):
-        ai_message = get_ai_message(user_question)
+        ai_response = get_ai_response(user_question)
         with st.chat_message("ai"):
-            st.write(ai_message)
-        st.session_state.message_list.append({"role": "ai", "content": ai_message})
+            ai_message = st.write_stream(ai_response)
+            st.session_state.message_list.append({"role": "ai", "content": ai_message})
+            # streamlit에서는 채팅을 칠때마다 UI를 다시그림. 그래서 세션리스트에는 최종으로 나온 전체 답변을 넣어줘야 다음 채팅이 들어왔을 때 에러가 안남.
         
 print(f"after === {st.session_state.message_list}")
 
